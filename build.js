@@ -220,6 +220,13 @@ var bonusRound = {
       $('body').css({background: 'black'});
     });
   },
+  imgUrl: function(jobs, imgSrc) {
+    jobs.on('green', function() {
+      imageShow(imgSrc + '?' + new Date().getTime());
+    }).on('anime', 'red', function() {
+      $('body').css({background: 'black'});
+    });
+  },
   guid: function(jobs) {
     $('body').prepend('<div id="box"></div>');
     var box = $('#box').hide();
@@ -250,7 +257,8 @@ var start = (function() {
       filters = (vars["filters"] || "").toLowerCase().split(','),
       scope = vars["scope"] || "contains",
       showInactive = vars["showInactive"],
-      bonusName = vars["bonusRound"];
+      bonusName = vars["bonusRound"],
+      imgSrc = vars["imgSrc"];
 
   var nameMatcher = (scope == "contains")
     ? function (name, filter) { return name.indexOf(filter) !== -1; }
@@ -266,7 +274,7 @@ var start = (function() {
   if (showInactive)  { $('body').addClass('show-inactive'); }
 
   if (bonusName != void 0 && bonusRound[bonusName] != void 0) {
-    bonusRound[bonusName](jobs);
+    bonusRound[bonusName](jobs, imgSrc);
   }
 
   $(document).on('click', function() { 
