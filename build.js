@@ -224,7 +224,7 @@ var bonusRound = {
     jobs.on('green', function() {
       imageShow(imgSrc + '?' + new Date().getTime());
     }).on('anime', 'red', function() {
-      $('body').css({background: 'black'});
+      imageHide();
     });
   },
   guid: function(jobs) {
